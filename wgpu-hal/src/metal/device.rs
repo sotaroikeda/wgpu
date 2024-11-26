@@ -1334,7 +1334,7 @@ impl crate::Device for super::Device {
         Ok(super::Fence {
             completed_value: Arc::new(atomic::AtomicU64::new(0)),
             pending_command_buffers: Vec::new(),
-            shared_event: shared_event,
+            shared_event,
         })
     }
 

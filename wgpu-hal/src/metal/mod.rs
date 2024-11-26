@@ -429,9 +429,9 @@ impl crate::Queue for Queue {
                 signal_fence
                     .pending_command_buffers
                     .push((signal_value, raw.to_owned()));
-                
-                if signal_fence.shared_event.is_some() {
-                    raw.encode_signal_event(signal_fence.shared_event.as_ref().unwrap(), signal_value);
+
+                if let Some(shared_event) = signal_fence.shared_event.as_ref() {
+                    raw.encode_signal_event(shared_event, signal_value);
                 }
                 // only return an extra one if it's extra
                 match command_buffers.last() {
